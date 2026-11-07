@@ -1,0 +1,19 @@
+[tools]
+node = "24"
+pnpm = "12.18.0"
+
+[tasks.test]
+description = "Run game, telemetry and isolated installer tests"
+run = "pnpm test"
+
+[tasks.check]
+description = "Check every native GPUI role using the installed Herdr CLI"
+run = "pnpm run check"
+
+[tasks.install]
+description = "Install Fallout; refuse existing targets"
+run = "pnpm run install:layout"
+
+[tasks.install-update]
+description = "Back up and explicitly update existing Fallout files"
+run = "pnpm run install:layout --update"

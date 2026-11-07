@@ -1,0 +1,9 @@
+// Pure game rules, separated so lockout, likeness, rewards and movement can be tested.
+export const WORDS=["COLD","CORD","CARD","WARD","WARM","FARM","FORM","FOAM","ROAM","ROAD","LOAD","LEAD"];
+export function likeness(a,b) { return [...a].filter((v,i)=>v===b[i]).length; }
+export function newHack(random=Math.random) { const words=[...WORDS].sort(()=>random()-0.5); return {words,secret:words[Math.floor(random()*words.length)],tries:4,guesses:[],removed:[],used:[],log:["TRAINING SANDBOX / 4-LETTER PASSWORD","Select a word. Likeness = exact-position matches."],state:"play"}; }
+export function guess(g,word) { if(g.state!=="play"||g.guesses.includes(word)||g.removed.includes(word)||!g.words.includes(word)) return false; g.guesses.push(word); const n=likeness(word,g.secret); g.log.push("> "+word+" · LIKENESS "+n+"/4"); if(n===4){g.state="won";g.log.push("ACCESS GRANTED / TRAINING COMPLETE");}else if(--g.tries===0){g.state="lost";g.log.push("TRAINING LOCKED / PASSWORD: "+g.secret);} return true; }
+export function bracket(g,id) { if(g.state!=="play"||g.used.includes(id))return; g.used.push(id); if(id===1){g.tries=4;g.log.push("ALLOWANCE REPLENISHED");}else{const dud=g.words.find(w=>w!==g.secret&&!g.guesses.includes(w)&&!g.removed.includes(w));if(dud){g.removed.push(dud);g.log.push("DUD REMOVED");}else g.log.push("NO DUDS REMAIN");} }
+export const MAP=[".......",".##.#..","..C.#C.",".#..#..",".C#....","...##..","......V"];
+export function newSalvage(){return {x:0,y:0,fuel:22,caps:[],state:"play",steps:0};}
+export function move(g,dx,dy){if(g.state!=="play"||Math.abs(dx)+Math.abs(dy)!==1)return false;const x=g.x+dx,y=g.y+dy;if(x<0||y<0||x>6||y>6||MAP[y][x]==="#")return false;g.x=x;g.y=y;g.fuel--;g.steps++;if(MAP[y][x]==="C"&&!g.caps.includes(x+","+y))g.caps.push(x+","+y);if(MAP[y][x]==="V"&&g.caps.length===3)g.state="won";else if(g.fuel<=0)g.state="lost";return true;}

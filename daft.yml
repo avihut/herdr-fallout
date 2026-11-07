@@ -1,0 +1,6 @@
+layout: contained
+hooks:
+  worktree-post-create:
+    jobs:
+      - name: setup-tools
+        run: mise trust && mise install

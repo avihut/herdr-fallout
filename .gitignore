@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.*
+.mise.local.toml
+daft.local.yml
+*.log
+*.png
+.DS_Store
+coverage/

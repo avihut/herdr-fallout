@@ -1,0 +1,125 @@
+{
+  "id": "root",
+  "type": "column",
+  "children": [
+    {
+      "id": "fallout-top",
+      "type": "block",
+      "content": {
+        "mod": "fallout",
+        "props": {
+          "role": "top"
+        }
+      },
+      "size": {
+        "px": 68
+      },
+      "window_drag": true
+    },
+    {
+      "id": "fallout-body",
+      "type": "row",
+      "children": [
+        {
+          "id": "sidebar",
+          "type": "block",
+          "content": {
+            "mod": "fallout",
+            "props": {
+              "role": "sidebar"
+            }
+          },
+          "size": {
+            "px": 280
+          },
+          "min": 240,
+          "max": 420
+        },
+        {
+          "id": "fallout-work",
+          "type": "column",
+          "children": [
+            {
+              "id": "fallout-tabs",
+              "type": "block",
+              "content": {
+                "mod": "fallout",
+                "props": {
+                  "role": "tabs"
+                }
+              },
+              "size": {
+                "px": 42
+              }
+            },
+            {
+              "id": "fallout-terminals",
+              "type": "block",
+              "content": {
+                "tab": "active",
+                "pane": {
+                  "header": {
+                    "content": {
+                      "mod": "fallout",
+                      "props": {
+                        "role": "pane"
+                      }
+                    },
+                    "reveal": "always",
+                    "height": 18,
+                    "position": "top"
+                  },
+                  "background": "surface",
+                  "border": {
+                    "width": 3,
+                    "color": "surface"
+                  },
+                  "focus": {
+                    "width": 3,
+                    "color": "surface"
+                  },
+                  "radius": 7,
+                  "gap": 8,
+                  "lone": true
+                }
+              },
+              "padding": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fallout-footer",
+      "type": "block",
+      "content": {
+        "mod": "fallout",
+        "props": {
+          "role": "footer"
+        }
+      },
+      "size": {
+        "px": 30
+      }
+    }
+  ],
+  "background": "canvas",
+  "theme": {
+    "light": "fallout-light",
+    "dark": "fallout-dark"
+  },
+  "font": "Geist Mono",
+  "font_size": 16,
+  "ui_font": "Geist Mono",
+  "terminal_padding": [
+    10,
+    10
+  ],
+  "terminal_opacity": 1,
+  "titlebar": "none",
+  "traffic_lights": [
+    16,
+    22
+  ],
+  "preview": "layouts/fallout.svg"
+}
